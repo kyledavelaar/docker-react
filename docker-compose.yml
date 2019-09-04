@@ -1,0 +1,19 @@
+version: '3.7'
+
+services:
+
+  sample:
+    container_name: docker-react
+    build:
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      - '.:/app' # mount code in container at /app
+      - '/app/node_modules'  # store node_modules in container so don't need them in project anymore
+    ports:
+      - '3001:3000' #expose 3000 to other containers, run app in browser in 3001
+    environment:
+      - NODE_ENV=development
+
+
+# docker-compose up -d --build
